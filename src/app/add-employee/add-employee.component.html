@@ -1,0 +1,58 @@
+<div class="col-md-6">
+  <h2 class="text-center">Add Employee</h2>
+  <form>
+    <div class="form-group">
+      <label for="fName">First Name:</label>
+      <input type="fName" [(ngModel)]="user.fName" placeholder="First Name" name="fName" class="form-control" id="fName">
+    </div>
+
+    <div class="form-group">
+      <label for="lName">Last Name:</label>
+      <input type="lName" [(ngModel)]="user.lName" placeholder="Last Name" name="lName" class="form-control" id="lname">
+    </div>
+  
+    <div class="form-group">
+      <label for="street">Address:</label>
+      <input type="street" [(ngModel)]="user.street" placeholder="Address" name="street" class="form-control" id="street">
+    </div>
+
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="city" [(ngModel)]="user.city" placeholder="City" name="city" class="form-control" id="city">
+    </div>
+  
+    <div class="form-group">
+      <label for="state">State:</label>
+      <input type="state" [(ngModel)]="user.state" placeholder="State" name="state" class="form-control" id="state">
+    </div>
+
+    <div class="form-group">
+      <label for="zip">Zip:</label>
+      <input type="zip" [(ngModel)]="user.zip" placeholder="Zip" name="zip" class="form-control" id="zip">
+    </div>
+
+    <div class="form-group">
+      <label for="cellphone">Cell Phone:</label>
+      <input type="cellphone" [(ngModel)]="user.cellphone" placeholder="Cell phone" name="cellphone" class="form-control" id="cellphone">
+    </div>
+
+    <div class="form-group">
+      <label for="homephone">Home Phone:</label>
+      <input type="homephone" [(ngModel)]="user.homephone" placeholder="Home Phone" name="homephone" class="form-control" id="homephone">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" [(ngModel)]="user.email" placeholder="Email" name="email" class="form-control" id="email">
+    </div>
+
+    <div class="form-group">
+      <label for="empId">Employee Id</label>
+      <input [(ngModel)]="user.empId" placeholder="Employee Id" name="Employee Id" class="form-control" id="employeeid">
+    </div>
+  
+    <button class="btn btn-success" (click)="createEmployee()">Create</button>
+  </form>
+  </div>
+
+  <!--empId: string, fname: string, lname: string, street: string, city: string, state: string, zip: string, cellphone: string, homephone: string, email: string-->
