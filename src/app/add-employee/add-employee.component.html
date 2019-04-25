@@ -1,58 +1,217 @@
 <div class="col-md-6">
   <h2 class="text-center">Add Employee</h2>
-  <form>
-    <div class="form-group">
-      <label for="fName">First Name:</label>
-      <input type="fName" [(ngModel)]="user.fName" placeholder="First Name" name="fName" class="form-control" id="fName">
-    </div>
-
-    <div class="form-group">
-      <label for="lName">Last Name:</label>
-      <input type="lName" [(ngModel)]="user.lName" placeholder="Last Name" name="lName" class="form-control" id="lname">
-    </div>
   
+  <form #addEmployee="ngForm" appIdentityRevealed>
     <div class="form-group">
-      <label for="street">Address:</label>
-      <input type="street" [(ngModel)]="user.street" placeholder="Address" name="street" class="form-control" id="street">
-    </div>
+        <div [hidden]="addEmployee.submitted">
+            <div class="cross-validation" [class.cross-validation-error]="addEmployee.errors?.identityRevealed && (addEmployee.touched)">
+                
+                <div class="form-group">
+                  <label for="fName">First Name:</label>
+                  <input id="fName" name="fName" type="fName" [(ngModel)]="user.fName" placeholder="First Name" 
+                  name="fName" class="form-control" required minlength="2" required maxlength="35" #fName="ngModel" ngModel pattern="[a-zA-Z ]*">
+              
+                  <div *ngIf="fName.invalid && (fName.touched)"
+                    class="alert alert-danger">
+                  <div *ngIf="fName.errors.required">
+                    First Name is required.
+                  </div>
+                  <div *ngIf="fName.errors.minlength">
+                    First Name must be at least 2 characters long.
+                  </div>
+                  <div *ngIf="fName.errors.maxlength">
+                    First Name must be less than 36 characters long.
+                  </div>
+                  <div *ngIf="fName.errors.pattern">
+                    First Name can only be characters between A to Z.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                  <label for="lName">Last Name:</label>
+                  <input id="lName" name="lName" type="lName" [(ngModel)]="user.lName" placeholder="Last Name" 
+                  name="lName" class="form-control" required minlength="2" required maxlength="35" #lName="ngModel" ngModel pattern="[a-zA-Z ]*">
+              
+                  <div *ngIf="lName.invalid && (lName.touched)"
+                    class="alert alert-danger">
+                  <div *ngIf="lName.errors.required">
+                    Last Name is required.
+                  </div>
+                  <div *ngIf="lName.errors.minlength">
+                    Last Name must be at least 2 characters long.
+                  </div>
+                  <div *ngIf="lName.errors.maxlength">
+                    Last Name must be less than 36 characters long.
+                  </div>
+                  <div *ngIf="fName.errors.pattern">
+                      Last Name can only be characters between A to Z.
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                  <label for="street">Address:</label>
+                  <input id="street" name="street" type="street" [(ngModel)]="user.street" placeholder="Address" 
+                  name="street" class="form-control" required minlength="10" required maxlength="50" #street="ngModel" ngModel pattern="[a-zA-Z0-9 ]*">
+              
+                  <div *ngIf="street.invalid && (lName.touched)"
+                    class="alert alert-danger">
+                  <div *ngIf="street.errors.required">
+                    Address is required.
+                  </div>
+                  <div *ngIf="street.errors.minlength">
+                    Address must be at least 10 characters long.
+                  </div>
+                  <div *ngIf="street.errors.maxlength">
+                    Address must be less than 51 characters long.
+                  </div>
+                  <div *ngIf="street.errors.pattern">
+                    Address must be alphanumeric.
+                  </div>
+                </div>
+              </div>
+            
+              <div class="form-group">
+                  <label for="city">City:</label>
+                  <input id="city" name="city" type="city" [(ngModel)]="user.city" placeholder="city" 
+                  name="city" class="form-control" required minlength="10" required maxlength="50" #city="ngModel" ngModel pattern="[a-zA-Z ]*">
+              
+                  <div *ngIf="city.invalid && (city.touched)"
+                    class="alert alert-danger">
+                  <div *ngIf="city.errors.required">
+                    Address is required.
+                  </div>
+                  <div *ngIf="city.errors.minlength">
+                    Address must be at least 10 characters long.
+                  </div>
+                  <div *ngIf="city.errors.maxlength">
+                    Address must be less than 51 characters long.
+                  </div>
+                  <div *ngIf="city.errors.pattern">
+                    Address can only be characters between A to Z.
+                  </div>
+                </div>
+              </div>         
+              
+              <div class="form-group">
+                  <label for="state">State</label> 
+                  <select id="state" name="state" class="form-control"
+                          required [(ngModel)]="employee.state" #state="ngModel" >
+                    <option *ngFor="let p of states" [value]="p">{{p}}</option>
+                  </select>
 
-    <div class="form-group">
-      <label for="city">City:</label>
-      <input type="city" [(ngModel)]="user.city" placeholder="City" name="city" class="form-control" id="city">
-    </div>
-  
-    <div class="form-group">
-      <label for="state">State:</label>
-      <input type="state" [(ngModel)]="user.state" placeholder="State" name="state" class="form-control" id="state">
-    </div>
+                    <div *ngIf="state.errors && state.touched" class="alert alert-danger">
+                    <div *ngIf="state.errors.required">state is required.</div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="zip">Zip/Postal Code:</label>
+                  <input id="zip" name="zip" type="zip" [(ngModel)]="user.zip" placeholder="Zip/Postal Code" 
+                  name="zip" class="form-control" required minlength="5" required maxlength="9" #zip="ngModel" ngModel pattern="[0-9 ]*">
+              
+                    <div *ngIf="zip.invalid && (zip.touched)"
+                      class="alert alert-danger">
+                    <div *ngIf="zip.errors.required">
+                      Zip/Postal Code is required.
+                    </div>
+                    <div *ngIf="zip.errors.minlength">
+                      Zip/Postal Code must be at least 5 characters long.
+                    </div>
+                    <div *ngIf="zip.errors.maxlength">
+                      Zip/Postal Code must be less than 10 characters long.
+                    </div>
+                    <div *ngIf="zip.errors.pattern">
+                      Zip/Postal Code can only be must be numeric.
+                    </div>
+                  </div>
+                </div>   
 
-    <div class="form-group">
-      <label for="zip">Zip:</label>
-      <input type="zip" [(ngModel)]="user.zip" placeholder="Zip" name="zip" class="form-control" id="zip">
-    </div>
+                <div class="form-group">
+                  <label for="homephone">Home Phone:</label>
+                  <input id="homephone" name="homephone" type="homephone" [(ngModel)]="user.homephone" placeholder="Home Phone" 
+                  name="homephone" class="form-control" required minlength="10" required maxlength="10" #homephone="ngModel" ngModel pattern="[0-9 ]*">
+              
+                    <div *ngIf="homephone.invalid && (homephone.touched)"
+                      class="alert alert-danger">
+                    <div *ngIf="homephone.errors.required">
+                      Home Phone is required.
+                    </div>
+                    <div *ngIf="homephone.errors.minlength">
+                      Home Phone must be at least 10 characters long.
+                    </div>
+                    <div *ngIf="homephone.errors.maxlength">
+                      Home Phone must be less than 11 characters long.
+                    </div>
+                    <div *ngIf="homephone.errors.pattern">
+                      Home Phone can only be must be numeric.
+                    </div>
+                  </div>
+                </div> 
 
-    <div class="form-group">
-      <label for="cellphone">Cell Phone:</label>
-      <input type="cellphone" [(ngModel)]="user.cellphone" placeholder="Cell phone" name="cellphone" class="form-control" id="cellphone">
-    </div>
+                <div class="form-group">
+                  <label for="cellphone">Cell Phone:</label>
+                  <input id="cellphone" name="cellphone" type="cellphone" [(ngModel)]="user.cellphone" placeholder="Cell Phone" 
+                  name="cellphone" class="form-control" required minlength="10" required maxlength="10" #cellphone="ngModel" ngModel pattern="[0-9 ]*">
+              
+                    <div *ngIf="cellphone.invalid && (cellphone.touched)"
+                      class="alert alert-danger">
+                    <div *ngIf="cellphone.errors.required">
+                      Cell Phone is required.
+                    </div>
+                    <div *ngIf="cellphone.errors.minlength">
+                      Cell Phone must be at least 10 characters long.
+                    </div>
+                    <div *ngIf="cellphone.errors.maxlength">
+                      Cell Phone must be less than 11 characters long.
+                    </div>
+                    <div *ngIf="cellphone.errors.pattern">
+                      Cell Phone can only be must be numeric.
+                    </div>
+                  </div>
+                </div>
 
-    <div class="form-group">
-      <label for="homephone">Home Phone:</label>
-      <input type="homephone" [(ngModel)]="user.homephone" placeholder="Home Phone" name="homephone" class="form-control" id="homephone">
-    </div>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input id="email" name="email" type="email" [(ngModel)]="user.email" placeholder="Email" 
+                  name="email" class="form-control" required minlength="10" required maxlength="50" #email="ngModel" ngModel pattern="[a-zA-Z0-9@. ]*"  ngModel [email]="true">
+              
+                    <div *ngIf="email.invalid && (email.touched)"
+                      class="alert alert-danger">
+                    <div *ngIf="cellphone.errors.required">
+                      Email is required.
+                    </div>
+                    <div *ngIf="email.errors.minlength">
+                      Email must be at least 10 characters long.
+                    </div>
+                    <div *ngIf="email.errors.maxlength">
+                      Email must be less than 51 characters long.
+                    </div>
+                    <div *ngIf="email.errors.pattern">
+                      Email is invalid
+                    </div>
+                    <div *ngIf="email.errors.email">
+                      Email is invalid
+                    </div>
+                  </div>
+                </div> 
 
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" [(ngModel)]="user.email" placeholder="Email" name="email" class="form-control" id="email">
-    </div>
+            </div>
+        </div>
 
-    <div class="form-group">
-      <label for="empId">Employee Id</label>
-      <input [(ngModel)]="user.empId" placeholder="Employee Id" name="Employee Id" class="form-control" id="employeeid">
-    </div>
-  
-    <button class="btn btn-success" (click)="createEmployee()">Create</button>
-  </form>
+    <button type="submit" class="btn btn-default"
+    [disabled]="addEmployee.invalid">Save</button>
+<button type="button" class="btn btn-default"
+    (click)="addEmployee.resetForm({})">Reset</button>
   </div>
 
-  <!--empId: string, fname: string, lname: string, street: string, city: string, state: string, zip: string, cellphone: string, homephone: string, email: string-->
+    <!--
+    <button class="btn btn-success" (click)="createEmployee()">Create</button> -->
+<div class="submitted-message" *ngIf="addEmployee.submitted">
+<p>You've submitted employee, {{ addEmployee.value.name }}!</p>
+<button (click)="addEmployee.resetForm({})">Add Employee</button>
+  
+  </div>
+  </form>
+</div>
