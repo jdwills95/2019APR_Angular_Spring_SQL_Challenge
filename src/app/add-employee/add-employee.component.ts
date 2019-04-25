@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService, Employee } from '../service/http-client.service';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-add-employee',
@@ -33,7 +34,8 @@ export class AddEmployeeComponent implements OnInit {
   user: Employee = new Employee('', '', '', '', '', '', '', '', '', '');
 
   constructor(
-    private httpClientService: HttpClientService
+    private httpClientService: HttpClientService,
+    private loginService: AuthenticationService
   ) { }
 
   ngOnInit() {

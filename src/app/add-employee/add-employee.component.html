@@ -75,7 +75,7 @@
               <div class="form-group">
                   <label for="city">City:</label>
                   <input id="city" name="city" type="city" [(ngModel)]="user.city" placeholder="city" 
-                  name="city" class="form-control" required minlength="10" required maxlength="50" #city="ngModel" ngModel pattern="[a-zA-Z ]*">
+                  name="city" class="form-control" required minlength="5" required maxlength="50" #city="ngModel" ngModel pattern="[a-zA-Z ]*">
               
                   <div *ngIf="city.invalid && (city.touched)"
                     class="alert alert-danger">
@@ -83,7 +83,7 @@
                     Address is required.
                   </div>
                   <div *ngIf="city.errors.minlength">
-                    Address must be at least 10 characters long.
+                    Address must be at least 5 characters long.
                   </div>
                   <div *ngIf="city.errors.maxlength">
                     Address must be less than 51 characters long.
@@ -201,16 +201,9 @@
         </div>
 
     <button type="submit" class="btn btn-default"
-    [disabled]="addEmployee.invalid">Save</button>
-<button type="button" class="btn btn-default"
-    (click)="addEmployee.resetForm({})">Reset</button>
-  </div>
-
-    <!--
-    <button class="btn btn-success" (click)="createEmployee()">Create</button> -->
-<div class="submitted-message" *ngIf="addEmployee.submitted">
-<p>You've submitted employee, {{ addEmployee.value.name }}!</p>
-<button (click)="addEmployee.resetForm({})">Add Employee</button>
+      [disabled]="addEmployee.invalid" (click)="createEmployee()" *ngIf="loginService.isUserLoggedIn()" routerLink="/">Save</button>
+    
+    <button type="button" class="btn btn-default" *ngIf="loginService.isUserLoggedIn()" routerLink="/">Cancel</button>
   
   </div>
   </form>
