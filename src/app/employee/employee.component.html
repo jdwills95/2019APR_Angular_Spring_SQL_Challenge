@@ -7,9 +7,10 @@
     </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let employee of employees">
-          <td>{{employee.fName}} {{employee.lName}}</td>
+      <tr *ngFor="let employee of employees; let i=index;">
+          <td *ngIf="loginService.isUserLoggedIn()" routerLink="/editemployee" class="nav-link">{{employee.fName}} {{employee.lName}}</td>
           <td>{{employee.email}}</td>
+          <td><button class="btn btn-danger" (click)="deleteEmployee(employee)"> Delete Employee</button></td>
           </tr>
   </tbody>
     </table>

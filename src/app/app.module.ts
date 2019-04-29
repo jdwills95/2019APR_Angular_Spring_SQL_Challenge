@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { BasicAuthHttpInterceptorService } from './service/basic-auth-http-intercept.service';
+import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { BasicAuthHttpInterceptorService } from './service/basic-auth-http-inter
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    EditEmployeeComponent
   ],
   imports: [
     BrowserModule,

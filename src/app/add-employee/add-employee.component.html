@@ -96,7 +96,7 @@
               
               <div class="form-group">
                   <label for="state">State</label> 
-                  <select id="state" name="state" class="form-control"
+                  <select id="state" name="state" [(ngModel)]="user.state" class="form-control"
                           required [(ngModel)]="employee.state" #state="ngModel" >
                     <option *ngFor="let p of states" [value]="p">{{p}}</option>
                   </select>

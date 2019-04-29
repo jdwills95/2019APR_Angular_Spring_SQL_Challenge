@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class Employee {
   constructor(
-    public empId: string,
+    public fName: string,
+    public lName: string,
     public street: string,
     public city: string,
     public state: string,
@@ -11,8 +12,7 @@ export class Employee {
     public cellphone: string,
     public homephone: string,
     public email: string,
-    public fName: string,
-    public lName: string,
+    public empId: string,
   ) { }
 }
 
@@ -27,14 +27,19 @@ export class HttpClientService {
   }
 
   getEmployees() {
-    return this.httpClient.get<Employee[]>('http://localhost:8080/employees');
+    return this.httpClient.get<Employee[]>('http://localhost:8080/employee/all');
   }
 
   public deleteEmployee(employee) {
-    return this.httpClient.delete<Employee>('http://localhost:8080/employees' + '/' + employee.empId);
+    return this.httpClient.delete<Employee>('http://localhost:8080/employee' + '/' + employee.empId);
   }
 
+  public editEmployee(employee) {
+    return this.httpClient.put<Employee>('http://localhost:8080/employee' + '/' + employee.empId, employee);
+  }
+
+
   public createEmployee(employee) {
-    return this.httpClient.post<Employee>('http://localhost:8080/employees', employee);
+    return this.httpClient.post<Employee>('http://localhost:8080/employee/addemployee', employee);
   }
 }
