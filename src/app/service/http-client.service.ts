@@ -30,11 +30,17 @@ export class HttpClientService {
     return this.httpClient.get<Employee[]>('http://localhost:8080/employee/all');
   }
 
+  getEmployeeById(empId) {
+    console.log('Stage 5', empId);
+    return this.httpClient.get<Employee[]>('http://localhost:8080/employee/' + empId);
+  }
+
   public deleteEmployee(employee) {
     return this.httpClient.delete<Employee>('http://localhost:8080/employee' + '/' + employee.empId);
   }
 
   public editEmployee(employee) {
+    console.log('Stage 6', employee.empId);
     return this.httpClient.put<Employee>('http://localhost:8080/employee' + '/' + employee.empId, employee);
   }
 
