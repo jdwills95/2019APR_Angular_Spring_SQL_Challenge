@@ -97,7 +97,6 @@ export class EditEmployeeComponent implements OnInit {
   get email() { return this.EditForm.get('email'); }
 
 getEmployee(empId: number) {
-  console.log('Stage 2', empId);
   if (empId === 0) {
     this.employee = {
       empId: null,

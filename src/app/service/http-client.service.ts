@@ -31,7 +31,6 @@ export class HttpClientService {
   }
 
   getEmployeeById(empId) {
-    console.log('Stage 5', empId);
     return this.httpClient.get<Employee[]>('http://localhost:8080/employee/' + empId);
   }
 
@@ -40,7 +39,6 @@ export class HttpClientService {
   }
 
   public editEmployee(employee) {
-    console.log('Stage 6', employee.empId);
     return this.httpClient.put<Employee>('http://localhost:8080/employee' + '/' + employee.empId, employee);
   }
 
