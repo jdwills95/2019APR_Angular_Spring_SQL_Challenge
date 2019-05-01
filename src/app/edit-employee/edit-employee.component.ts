@@ -143,18 +143,26 @@ getEmployee(empId: number) {
             this.employee.email = this.EditForm.value.email;
           }
 
-        editEmployee(): void {
+        editEmployee() {
+        if (this.employee.empId === null) {
           this.extractEmployeeFromForm();
-          this.httpClientService.editEmployee(this.employee)
+          this.httpClientService.createEmployee(this.employee)
           .subscribe( data => {
             alert('Employee created successfully.');
           });
+        } else {
+          this.extractEmployeeFromForm();
+          this.httpClientService.editEmployee(this.employee)
+          .subscribe( data => {
+            alert('Employee edited successfully.');
+          });
         }
+      }
 
-          ngOnInit(): void {
+          ngOnInit() {
           this.route.paramMap.subscribe(parameterMap => {
             const empId = +parameterMap.get('empId');
-            this.getEmployeeData(empId);
+            this.getEmployee(empId);
           });
           this.createForm();
           }

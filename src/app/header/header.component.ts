@@ -10,6 +10,18 @@ export class HeaderComponent implements OnInit {
 
   constructor(private loginService: AuthenticationService) { }
 
+  employee = {  fname: '',
+                lname: '',
+                street: '',
+                city: '',
+                state: '',
+                zip: '',
+                phone: '',
+                cell: '',
+                email: '',
+                empId: '',
+  };
+
   ngOnInit() {
 
   }
